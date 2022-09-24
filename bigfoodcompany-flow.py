@@ -48,12 +48,18 @@ def getFlow():
         options=["Ok, empecemos!", "No me interesa"],       
       ).get_dict()
 
-
     preguntaInterest = Question(
         index="interest",
-        text="Antes que nada dime que te parece la vacante a la que te postulaste:\n\nEl auxiliar de almacén colabora en el almacenaje de productos perecederos, el armado de pedidos, orden y limpieza del almacén, entre otras cosas.\nSe trabaja 6 días por semana, con 1 de descanso, en tres turnos rolados.\nEl puesto cuenta con un atractivo sueldo base y prestaciones superiores a las de la ley.",
+        text="Antes que nada dime que te parece la vacante a la que te postulaste:\n\nEl auxiliar de almacén colabora en el almacenaje de productos perecederos, el armado de pedidos, orden y limpieza del almacén, entre otras cosas.\nSe trabaja 6 días por semana, con 1 de descanso, en tres turnos rolados.\nEl puesto cuenta con un sueldo mensual que ronda entre $5,000 y $7,000 pesos y prestaciones superiores a las de la ley",
         options = ["Me interesa","+ info","No me interesa"],
         ).get_dict()
+
+    # Nueva pregunta
+    preguntaDeAcuerdo = Question(
+        index = "de_acuerdo",
+        text = "Todas tus respuestas serán recolectadas y entregadas al equipo de Recursos Humanos de BigFoodCompany. Estás de acuerdo?",
+        options = ["Si", "No"]
+    ).get_dict()
 
     preguntaMoreInfo = Question(
         index="more_info",
@@ -64,8 +70,9 @@ def getFlow():
 
     preguntaNoInterest = Question(
         index="no_interest",
-        text = "Entiendo. No hay problema! Si en algún momento cambias de opinión me puedes esrcibir nuevamente. Adiós!",
+        text = "Entiendo. No hay problema! Si en algún momento cambias de opinión me puedes escribir nuevamente. Adiós!",
         immediateNext = True,
+        options = ["Quiero volver a empezar","Adios!"],
     ).get_dict()
 
     preguntaInterestBye = Question(
@@ -76,25 +83,36 @@ def getFlow():
 
 
     # Armado de secuencia
+
+    # Connections de pregunta intro. Presentacion de Emi
     preguntaIntro["question"]["connections"].append({'goto':preguntaQuienEsEmi["question"]["index"], 'isString': "Quién es Emi?"})
     preguntaIntro["question"]["connections"].append({'goto':preguntaInterest["question"]["index"], 'isString': "Si"})
-
-    preguntaInterest["question"]["connections"].append({'goto':preguntaMoreInfo["question"]["index"], 'isString': "+ info"})
-
+    preguntaIntro["question"]["connections"].append({'goto':preguntaNoInterest["question"]["index"], 'isString': "No me interesa"})
     
+    # Connections de pregunta quien es Emi. puede venir aca desde la intro si el candidato quiere saber mas sobre emi
     preguntaQuienEsEmi["question"]["connections"].append({'goto':preguntaSosUnRobot["question"]["index"], 'isString': "Eres un robot?"})
     preguntaQuienEsEmi["question"]["connections"].append({'goto':preguntaInterest["question"]["index"], 'isDefault': True})
-
-    preguntaSosUnRobot["question"]["connections"].append({'goto':preguntaInterest["question"]["index"], 'isDefault': True})
-
-    preguntaIntro["question"]["connections"].append({'goto':preguntaNoInterest["question"]["index"], 'isString': "No me interesa"})
-    preguntaInterest["question"]["connections"].append({'goto':preguntaNoInterest["question"]["index"], 'isString': "No me interesa"})
-    preguntaInterest["question"]["connections"].append({'goto':preguntaInterestBye["question"]["index"], 'isDefault': True})
     preguntaQuienEsEmi["question"]["connections"].append({'goto':preguntaNoInterest["question"]["index"], 'isString': "No me interesa"})
-    preguntaSosUnRobot["question"]["connections"].append({'goto':preguntaNoInterest["question"]["index"], 'isString': "No me interesa"})
-    preguntaMoreInfo["question"]["connections"].append({'goto':preguntaInterestBye["question"]["index"], 'isDefault': True})
-    preguntaMoreInfo["question"]["connections"].append({'goto':preguntaNoInterest["question"]["index"], 'isString': "No me interesa"})
 
+    # Connections de pregunta sos un robot.
+    preguntaSosUnRobot["question"]["connections"].append({'goto':preguntaInterest["question"]["index"], 'isDefault': True})
+    preguntaSosUnRobot["question"]["connections"].append({'goto':preguntaNoInterest["question"]["index"], 'isString': "No me interesa"})
+
+    # Connections de pregunta interest. Emi le pregunta al candidato si esta interesado en la posicion. Si esta interesado le pide confirmacion, sino lo saluda. Tambien puede darle mas info
+    preguntaInterest["question"]["connections"].append({'goto':preguntaMoreInfo["question"]["index"], 'isString': "+ info"}) # mas info
+    preguntaInterest["question"]["connections"].append({'goto':preguntaNoInterest["question"]["index"], 'isString': "No me interesa"}) # no le interesa
+    preguntaInterest["question"]["connections"].append({'goto':preguntaDeAcuerdo["question"]["index"], 'isDefault': True}) # Le pregunta si esta de acuerdo!
+    
+    # Connections de pregunta mas info 
+    preguntaMoreInfo["question"]["connections"].append({'goto':preguntaDeAcuerdo["question"]["index"], 'isDefault': True}) # si dijo que le interesaba, despues de pedir mas info, tambien hay que preguntarle si esta de acuerdo!
+    preguntaMoreInfo["question"]["connections"].append({'goto':preguntaNoInterest["question"]["index"], 'isString': "No me interesa"}) # si no le interesa bye
+
+    # Connections de pregunta de acuerdo. Si no esta de acuerdo con que se compartan sus datos, lo saluda. Si esta de acuerdo pasa a la pregunta interest.
+    preguntaDeAcuerdo["question"]["connections"].append({'goto':preguntaInterestBye["question"]["index"], 'isString': "Si"}) # si esta de acuerdo, Emi confirma la postulacion y saluda
+    preguntaDeAcuerdo["question"]["connections"].append({'goto':preguntaNoInterest["question"]["index"], 'isString': "No"}) # si no esta de acuerdo, emi le dice que todo ok
+
+    # Connections de la pregunta No interest. Le vamos a dar la posibilidad de empezar de vuelta por si se arrepintió o equivocó
+    preguntaNoInterest["question"]["connections"].append({'goto':preguntaIntro["question"]["index"], 'isString': "Quiero volver a empezar"}) 
 
     # Armado de set de schedule
     flow["current"] = preguntaIntro["question"]["index"]
@@ -102,6 +120,7 @@ def getFlow():
     flow[preguntaQuienEsEmi["question"]["index"]] = preguntaQuienEsEmi
     flow[preguntaSosUnRobot["question"]["index"]] = preguntaSosUnRobot
     flow[preguntaInterest["question"]["index"]] = preguntaInterest
+    flow[preguntaDeAcuerdo["question"]["index"]] = preguntaDeAcuerdo
     flow[preguntaMoreInfo["question"]["index"]] = preguntaMoreInfo
     flow[preguntaNoInterest["question"]["index"]] = preguntaNoInterest
     flow[preguntaInterestBye["question"]["index"]] = preguntaInterestBye
@@ -115,5 +134,9 @@ def get_test_flow():
 
 if __name__ == '__main__':
     import json
-    print(json.dumps(get_test_flow()))
+    flow = get_test_flow()
+    with open("modified_output_flow.json", "w") as write_file:
+        json.dump(flow, write_file, indent=4)
+    #print(json.dumps(flow))
+    print("Output flow saved to disk :)")
 

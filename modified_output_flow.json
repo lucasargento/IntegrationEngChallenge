@@ -1,0 +1,178 @@
+{
+    "current": "intro",
+    "intro": {
+        "question": {
+            "index": "intro",
+            "text": "Para poder completar tu postulaci\u00f3n para el puesto de Auxiliar de Almac\u00e9n en la empresa BigFoodCompany, necesito hacerte unas preguntas para entender tu perfil. No te preocupes, son menos de 5 minutos \u23f0\n\n \u00bfComenzamos?",
+            "options": [
+                "Si",
+                "Qui\u00e9n es Emi?",
+                "No me interesa"
+            ],
+            "errorMessageNotMatch": "Creo que no te he entendido \ud83e\udd14... Prueba con las opciones que te doy",
+            "exactMatch": false,
+            "connections": [
+                {
+                    "goto": "quienEsEmi",
+                    "isString": "Qui\u00e9n es Emi?"
+                },
+                {
+                    "goto": "interest",
+                    "isString": "Si"
+                },
+                {
+                    "goto": "no_interest",
+                    "isString": "No me interesa"
+                }
+            ]
+        }
+    },
+    "quienEsEmi": {
+        "question": {
+            "index": "quienEsEmi",
+            "text": "Soy un asistente virtual e intentar\u00e9 ayudarte cada vez que te postules a un puesto de trabajo. La conversaci\u00f3n conmigo no reemplaza una entrevista en persona, sino que mi objetivo es que tu perfil sea analizado y tomado en cuenta para este puesto y que puedas tener una oportunidad justa de conseguirlo!",
+            "options": [
+                "Ok, empecemos!",
+                "Eres un robot?",
+                "No me interesa"
+            ],
+            "errorMessageNotMatch": null,
+            "exactMatch": null,
+            "connections": [
+                {
+                    "goto": "sosUnRobot",
+                    "isString": "Eres un robot?"
+                },
+                {
+                    "goto": "interest",
+                    "isDefault": true
+                },
+                {
+                    "goto": "no_interest",
+                    "isString": "No me interesa"
+                }
+            ]
+        }
+    },
+    "sosUnRobot": {
+        "question": {
+            "index": "sosUnRobot",
+            "text": "S\u00ed! \ud83e\udd16 Intentar\u00e9 entender lo que me dices con todo mi esfuerzo, pero no siempre lo logro \ud83d\ude15 Con un poco de paciencia vamos a poder completar tu aplicaci\u00f3n r\u00e1pidamente \ud83d\ude04",
+            "options": [
+                "Ok, empecemos!",
+                "No me interesa"
+            ],
+            "errorMessageNotMatch": "Creo que no te he entendido \ud83e\udd14... Intenta con las opciones que te doy",
+            "exactMatch": true,
+            "connections": [
+                {
+                    "goto": "interest",
+                    "isDefault": true
+                },
+                {
+                    "goto": "no_interest",
+                    "isString": "No me interesa"
+                }
+            ]
+        }
+    },
+    "interest": {
+        "question": {
+            "index": "interest",
+            "text": "Antes que nada dime que te parece la vacante a la que te postulaste:\n\nEl auxiliar de almac\u00e9n colabora en el almacenaje de productos perecederos, el armado de pedidos, orden y limpieza del almac\u00e9n, entre otras cosas.\nSe trabaja 6 d\u00edas por semana, con 1 de descanso, en tres turnos rolados.\nEl puesto cuenta con un sueldo mensual que ronda entre $5,000 y $7,000 pesos y prestaciones superiores a las de la ley",
+            "options": [
+                "Me interesa",
+                "+ info",
+                "No me interesa"
+            ],
+            "errorMessageNotMatch": null,
+            "exactMatch": null,
+            "connections": [
+                {
+                    "goto": "more_info",
+                    "isString": "+ info"
+                },
+                {
+                    "goto": "no_interest",
+                    "isString": "No me interesa"
+                },
+                {
+                    "goto": "de_acuerdo",
+                    "isDefault": true
+                }
+            ]
+        }
+    },
+    "de_acuerdo": {
+        "question": {
+            "index": "de_acuerdo",
+            "text": "Todas tus respuestas ser\u00e1n recolectadas y entregadas al equipo de Recursos Humanos de BigFoodCompany. Est\u00e1s de acuerdo?",
+            "options": [
+                "Si",
+                "No"
+            ],
+            "errorMessageNotMatch": null,
+            "exactMatch": null,
+            "connections": [
+                {
+                    "goto": "interest_bye",
+                    "isString": "Si"
+                },
+                {
+                    "goto": "no_interest",
+                    "isString": "No"
+                }
+            ]
+        }
+    },
+    "more_info": {
+        "question": {
+            "index": "more_info",
+            "text": "Claro! Te puedo contar m\u00e1s \ud83d\ude0a\n\nSomos una compa\u00f1\u00eda global dedicada a ofrecer los alimentos favoritos de las comunidades. Con presencia en 18 pa\u00edses, ofrecemos productos de calidad en diversas categor\u00edas y precios.",
+            "options": [
+                "Me interesa",
+                "No me interesa"
+            ],
+            "errorMessageNotMatch": null,
+            "exactMatch": false,
+            "connections": [
+                {
+                    "goto": "de_acuerdo",
+                    "isDefault": true
+                },
+                {
+                    "goto": "no_interest",
+                    "isString": "No me interesa"
+                }
+            ]
+        }
+    },
+    "no_interest": {
+        "question": {
+            "index": "no_interest",
+            "text": "Entiendo. No hay problema! Si en alg\u00fan momento cambias de opini\u00f3n me puedes escribir nuevamente. Adi\u00f3s!",
+            "options": [
+                "Quiero volver a empezar",
+                "Adios!"
+            ],
+            "errorMessageNotMatch": null,
+            "exactMatch": null,
+            "connections": [
+                {
+                    "goto": "intro",
+                    "isString": "Quiero volver a empezar"
+                }
+            ]
+        }
+    },
+    "interest_bye": {
+        "question": {
+            "index": "interest_bye",
+            "text": "Genial! \ud83d\udcaa Te tendr\u00e9 en cuenta para el puesto. Que tengas un gran d\u00eda",
+            "options": [],
+            "errorMessageNotMatch": null,
+            "exactMatch": null,
+            "connections": []
+        }
+    }
+}
