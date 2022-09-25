@@ -114,7 +114,7 @@ def getFlow():
     # Connections de la pregunta No interest. Le vamos a dar la posibilidad de empezar de vuelta por si se arrepintió o equivocó
     preguntaNoInterest["question"]["connections"].append({'goto':preguntaIntro["question"]["index"], 'isString': "Quiero volver a empezar"}) 
 
-    # Armado de set de schedule
+    # Armado de set de schedule, con nueva pregunta agregada
     flow["current"] = preguntaIntro["question"]["index"]
     flow[preguntaIntro["question"]["index"]] = preguntaIntro
     flow[preguntaQuienEsEmi["question"]["index"]] = preguntaQuienEsEmi
@@ -135,8 +135,8 @@ def get_test_flow():
 if __name__ == '__main__':
     import json
     flow = get_test_flow()
-    with open("modified_output_flow.json", "w") as write_file:
-        json.dump(flow, write_file, indent=4)
+    with open("modified_output_flow.json", "w",encoding='utf8') as write_file:
+        json.dump(flow, write_file, indent=4,ensure_ascii=False)
     #print(json.dumps(flow))
     print("Output flow saved to disk :)")
 

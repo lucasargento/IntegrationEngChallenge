@@ -3,18 +3,18 @@
     "intro": {
         "question": {
             "index": "intro",
-            "text": "Para poder completar tu postulaci\u00f3n para el puesto de Auxiliar de Almac\u00e9n en la empresa BigFoodCompany, necesito hacerte unas preguntas para entender tu perfil. No te preocupes, son menos de 5 minutos \u23f0\n\n \u00bfComenzamos?",
+            "text": "Para poder completar tu postulación para el puesto de Auxiliar de Almacén en la empresa BigFoodCompany, necesito hacerte unas preguntas para entender tu perfil. No te preocupes, son menos de 5 minutos ⏰\n\n ¿Comenzamos?",
             "options": [
                 "Si",
-                "Qui\u00e9n es Emi?",
+                "Quién es Emi?",
                 "No me interesa"
             ],
-            "errorMessageNotMatch": "Creo que no te he entendido \ud83e\udd14... Prueba con las opciones que te doy",
+            "errorMessageNotMatch": "Creo que no te he entendido 🤔... Prueba con las opciones que te doy",
             "exactMatch": false,
             "connections": [
                 {
                     "goto": "quienEsEmi",
-                    "isString": "Qui\u00e9n es Emi?"
+                    "isString": "Quién es Emi?"
                 },
                 {
                     "goto": "interest",
@@ -30,7 +30,7 @@
     "quienEsEmi": {
         "question": {
             "index": "quienEsEmi",
-            "text": "Soy un asistente virtual e intentar\u00e9 ayudarte cada vez que te postules a un puesto de trabajo. La conversaci\u00f3n conmigo no reemplaza una entrevista en persona, sino que mi objetivo es que tu perfil sea analizado y tomado en cuenta para este puesto y que puedas tener una oportunidad justa de conseguirlo!",
+            "text": "Soy un asistente virtual e intentaré ayudarte cada vez que te postules a un puesto de trabajo. La conversación conmigo no reemplaza una entrevista en persona, sino que mi objetivo es que tu perfil sea analizado y tomado en cuenta para este puesto y que puedas tener una oportunidad justa de conseguirlo!",
             "options": [
                 "Ok, empecemos!",
                 "Eres un robot?",
@@ -57,12 +57,12 @@
     "sosUnRobot": {
         "question": {
             "index": "sosUnRobot",
-            "text": "S\u00ed! \ud83e\udd16 Intentar\u00e9 entender lo que me dices con todo mi esfuerzo, pero no siempre lo logro \ud83d\ude15 Con un poco de paciencia vamos a poder completar tu aplicaci\u00f3n r\u00e1pidamente \ud83d\ude04",
+            "text": "Sí! 🤖 Intentaré entender lo que me dices con todo mi esfuerzo, pero no siempre lo logro 😕 Con un poco de paciencia vamos a poder completar tu aplicación rápidamente 😄",
             "options": [
                 "Ok, empecemos!",
                 "No me interesa"
             ],
-            "errorMessageNotMatch": "Creo que no te he entendido \ud83e\udd14... Intenta con las opciones que te doy",
+            "errorMessageNotMatch": "Creo que no te he entendido 🤔... Intenta con las opciones que te doy",
             "exactMatch": true,
             "connections": [
                 {
@@ -79,7 +79,7 @@
     "interest": {
         "question": {
             "index": "interest",
-            "text": "Antes que nada dime que te parece la vacante a la que te postulaste:\n\nEl auxiliar de almac\u00e9n colabora en el almacenaje de productos perecederos, el armado de pedidos, orden y limpieza del almac\u00e9n, entre otras cosas.\nSe trabaja 6 d\u00edas por semana, con 1 de descanso, en tres turnos rolados.\nEl puesto cuenta con un sueldo mensual que ronda entre $5,000 y $7,000 pesos y prestaciones superiores a las de la ley",
+            "text": "Antes que nada dime que te parece la vacante a la que te postulaste:\n\nEl auxiliar de almacén colabora en el almacenaje de productos perecederos, el armado de pedidos, orden y limpieza del almacén, entre otras cosas.\nSe trabaja 6 días por semana, con 1 de descanso, en tres turnos rolados.\nEl puesto cuenta con un sueldo mensual que ronda entre $5,000 y $7,000 pesos y prestaciones superiores a las de la ley",
             "options": [
                 "Me interesa",
                 "+ info",
@@ -106,7 +106,7 @@
     "de_acuerdo": {
         "question": {
             "index": "de_acuerdo",
-            "text": "Todas tus respuestas ser\u00e1n recolectadas y entregadas al equipo de Recursos Humanos de BigFoodCompany. Est\u00e1s de acuerdo?",
+            "text": "Todas tus respuestas serán recolectadas y entregadas al equipo de Recursos Humanos de BigFoodCompany. Estás de acuerdo?",
             "options": [
                 "Si",
                 "No"
@@ -128,7 +128,7 @@
     "more_info": {
         "question": {
             "index": "more_info",
-            "text": "Claro! Te puedo contar m\u00e1s \ud83d\ude0a\n\nSomos una compa\u00f1\u00eda global dedicada a ofrecer los alimentos favoritos de las comunidades. Con presencia en 18 pa\u00edses, ofrecemos productos de calidad en diversas categor\u00edas y precios.",
+            "text": "Claro! Te puedo contar más 😊\n\nSomos una compañía global dedicada a ofrecer los alimentos favoritos de las comunidades. Con presencia en 18 países, ofrecemos productos de calidad en diversas categorías y precios.",
             "options": [
                 "Me interesa",
                 "No me interesa"
@@ -150,7 +150,7 @@
     "no_interest": {
         "question": {
             "index": "no_interest",
-            "text": "Entiendo. No hay problema! Si en alg\u00fan momento cambias de opini\u00f3n me puedes escribir nuevamente. Adi\u00f3s!",
+            "text": "Entiendo. No hay problema! Si en algún momento cambias de opinión me puedes escribir nuevamente. Adiós!",
             "options": [
                 "Quiero volver a empezar",
                 "Adios!"
@@ -168,7 +168,7 @@
     "interest_bye": {
         "question": {
             "index": "interest_bye",
-            "text": "Genial! \ud83d\udcaa Te tendr\u00e9 en cuenta para el puesto. Que tengas un gran d\u00eda",
+            "text": "Genial! 💪 Te tendré en cuenta para el puesto. Que tengas un gran día",
             "options": [],
             "errorMessageNotMatch": null,
             "exactMatch": null,
